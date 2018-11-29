@@ -1,0 +1,58 @@
+var HTML, SVG, el;
+import { createTree, html } from "diffhtml";
+import renderToString from "diffhtml-render-to-string";
+HTML = {
+  parse: function (s) {
+    return [typeof html === "function" ? html(s) : void 0];
+  },
+  render: function (tree) {
+    return renderToString(tree);
+  }
+};
+
+el = function (name) {
+  return function (...rest) {
+    return typeof createTree === "function" ? createTree(name, ...rest) : void 0;
+  };
+};
+
+(function () {
+  var i, len, results, tag, tags; // source: https://dev.w3.org/html5/html-author/#conforming-elements
+
+  tags = "a abbr address area article aside audio b base bb bdo blockquote body br button canvas caption cite code col colgroup command datagrid datalist dd del details dfn dialog div dl dt em embed fieldset figure footer form h1 h2 h3 h4 h5 h6 head header hr html i iframe img input ins kbd label legend li link main map mark menu meta meter nav noscript object ol optgroup option output p param pre progress q rp rt ruby samp script section select slot small source span strong style sub sup table tbody td textarea tfoot th thead time title tr ul var video".split(" ");
+  results = [];
+
+  for (i = 0, len = tags.length; i < len; i++) {
+    tag = tags[i];
+    results.push(HTML[tag] = el(tag));
+  }
+
+  return results;
+})();
+
+HTML.stylesheet = function (url) {
+  return HTML.link({
+    rel: "stylesheet",
+    href: url
+  });
+};
+
+SVG = {};
+
+(function () {
+  var i, len, results, tag, tags; // source: https://www.w3.org/TR/SVG2/eltindex.html
+
+  tags = "a altGlyph altGlyphDef altGlyphItem animate animateColor animateMotion animateTransform animation audio canvas circle clipPath color-profile cursor defs desc discard ellipse feBlend feColorMatrix feComponentTransfer feComposite feConvolveMatrix feDiffuseLighting feDisplacementMap feDistantLight feDropShadow feFlood feFuncA feFuncB feFuncG feFuncR feGaussianBlur feImage feMerge feMergeNode feMorphology feOffset fePointLight feSpecularLighting feSpotLight feTile feTurbulence filter font font-face font-face-format font-face-name font-face-src font-face-uri foreignObject g glyph glyphRef handler hatch hatchpath hkern iframe image line linearGradient listener marker mask mesh meshgradient meshpatch meshrow metadata missing-glyph mpath path pattern polygon polyline prefetch radialGradient rect script set solidColor solidcolor stop style svg switch symbol tbreak text textArea textPath title tref tspan unknown use video view vkern".split(" ");
+  results = [];
+
+  for (i = 0, len = tags.length; i < len; i++) {
+    tag = tags[i];
+    results.push(SVG[tag] = el(tag));
+  }
+
+  return results;
+})();
+
+export { el, HTML, SVG };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9keW9kZXIvcmVwb3MvcGFuZGEtdmRvbS9zcmMvaW5kZXguY29mZmVlIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLElBQUEsSUFBQSxFQUFBLEdBQUEsRUFBQSxFQUFBO0FBQUEsU0FBQSxVQUFBLEVBQUEsSUFBQSxRQUFBLFVBQUE7QUFDQSxPQUFBLGNBQUEsTUFBQSwyQkFBQTtBQUVBLElBQUEsR0FDRTtBQUFBLEVBQUEsS0FBQSxFQUFPLFVBQUEsQ0FBQSxFQUFBO1dBQU8sQ0FBQSxPQUFBLElBQUEsS0FBQSxVQUFBLEdBQUUsSUFBQSxDQUFNLENBQU4sQ0FBRixHQUFRLEtBQVIsQ0FBQSxDO0FBQWQsR0FBQTtBQUNBLEVBQUEsTUFBQSxFQUFRLFVBQUEsSUFBQSxFQUFBO1dBQVUsY0FBQSxDQUFBLElBQUEsQztBQUFWO0FBRFIsQ0FERjs7QUFJQSxFQUFBLEdBQUssVUFBQSxJQUFBLEVBQUE7U0FDSCxVQUFBLEdBQUEsSUFBQSxFQUFBOzhDQUFhLFVBQUEsQ0FBWSxJQUFaLEVBQWtCLEdBQUEsSUFBbEIsQyxHQUFrQixLQUFBLEM7QUFBL0IsRztBQURHLENBQUw7O0FBR0csQ0FBQSxZQUFBO0FBRUQsTUFBQSxDQUFBLEVBQUEsR0FBQSxFQUFBLE9BQUEsRUFBQSxHQUFBLEVBQUEsSUFBQSxDQUZDLEM7O0FBRUQsRUFBQSxJQUFBLEdBQU8sd2lCQUFBLEtBQUEsQ0FBQSxHQUFBLENBQVA7QUFTbUIsRUFBQSxPQUFBLEdBQUEsRUFBQTs7QUFBQSxPQUFBLENBQUEsR0FBQSxDQUFBLEVBQUEsR0FBQSxHQUFBLElBQUEsQ0FBQSxNQUFBLEVBQUEsQ0FBQSxHQUFBLEdBQUEsRUFBQSxDQUFBLEVBQUEsRUFBQTs7aUJBQW5CLElBQUssQ0FBTCxHQUFLLENBQUwsR0FBWSxFQUFBLENBQUEsR0FBQSxDO0FBQU87OztBQVhyQixDQUFHOztBQWFILElBQUksQ0FBSixVQUFBLEdBQWtCLFVBQUEsR0FBQSxFQUFBO1NBQ2hCLElBQUksQ0FBSixJQUFBLENBQVU7QUFBQSxJQUFBLEdBQUEsRUFBQSxZQUFBO0FBQW1CLElBQUEsSUFBQSxFQUFNO0FBQXpCLEdBQVYsQztBQURnQixDQUFsQjs7QUFHQSxHQUFBLEdBQU0sRUFBTjs7QUFFRyxDQUFBLFlBQUE7QUFFRCxNQUFBLENBQUEsRUFBQSxHQUFBLEVBQUEsT0FBQSxFQUFBLEdBQUEsRUFBQSxJQUFBLENBRkMsQzs7QUFFRCxFQUFBLElBQUEsR0FBTywyNkJBQUEsS0FBQSxDQUFBLEdBQUEsQ0FBUDtBQWNrQixFQUFBLE9BQUEsR0FBQSxFQUFBOztBQUFBLE9BQUEsQ0FBQSxHQUFBLENBQUEsRUFBQSxHQUFBLEdBQUEsSUFBQSxDQUFBLE1BQUEsRUFBQSxDQUFBLEdBQUEsR0FBQSxFQUFBLENBQUEsRUFBQSxFQUFBOztpQkFBbEIsR0FBSSxDQUFKLEdBQUksQ0FBSixHQUFXLEVBQUEsQ0FBQSxHQUFBLEM7QUFBTzs7O0FBaEJwQixDQUFHOztBQWtCSCxTQUFBLEVBQUEsRUFBQSxJQUFBLEVBQUEsR0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7Y3JlYXRlVHJlZSwgaHRtbH0gZnJvbSBcImRpZmZodG1sXCJcbmltcG9ydCByZW5kZXJUb1N0cmluZyBmcm9tIFwiZGlmZmh0bWwtcmVuZGVyLXRvLXN0cmluZ1wiXG5cbkhUTUwgPVxuICBwYXJzZTogKHMpIC0+IFsgaHRtbD8gcyBdXG4gIHJlbmRlcjogKHRyZWUpIC0+IHJlbmRlclRvU3RyaW5nIHRyZWVcblxuZWwgPSAobmFtZSkgLT5cbiAgKHJlc3QuLi4pIC0+IGNyZWF0ZVRyZWU/IG5hbWUsIHJlc3QuLi5cblxuZG8gLT5cbiAgIyBzb3VyY2U6IGh0dHBzOi8vZGV2LnczLm9yZy9odG1sNS9odG1sLWF1dGhvci8jY29uZm9ybWluZy1lbGVtZW50c1xuICB0YWdzID0gXCJhIGFiYnIgYWRkcmVzcyBhcmVhIGFydGljbGUgYXNpZGUgYXVkaW8gYiBiYXNlIGJiIGJkbyBibG9ja3F1b3RlIGJvZHlcbiAgYnIgYnV0dG9uIGNhbnZhcyBjYXB0aW9uIGNpdGUgY29kZSBjb2wgY29sZ3JvdXAgY29tbWFuZCBkYXRhZ3JpZCBkYXRhbGlzdCBkZFxuICBkZWwgZGV0YWlscyBkZm4gZGlhbG9nIGRpdiBkbCBkdCBlbSBlbWJlZCBmaWVsZHNldCBmaWd1cmUgZm9vdGVyIGZvcm0gaDEgaDIgaDNcbiAgaDQgaDUgaDYgaGVhZCBoZWFkZXIgaHIgaHRtbCBpIGlmcmFtZSBpbWcgaW5wdXQgaW5zIGtiZCBsYWJlbCBsZWdlbmQgbGkgbGlua1xuICBtYWluIG1hcCBtYXJrIG1lbnUgbWV0YSBtZXRlciBuYXYgbm9zY3JpcHQgb2JqZWN0IG9sIG9wdGdyb3VwIG9wdGlvbiBvdXRwdXQgcFxuICBwYXJhbSBwcmUgcHJvZ3Jlc3MgcSBycCBydCBydWJ5IHNhbXAgc2NyaXB0IHNlY3Rpb24gc2VsZWN0IHNsb3Qgc21hbGwgc291cmNlXG4gIHNwYW4gc3Ryb25nIHN0eWxlIHN1YiBzdXAgdGFibGUgdGJvZHkgdGQgdGV4dGFyZWEgdGZvb3QgdGggdGhlYWQgdGltZSB0aXRsZSB0clxuICB1bCB2YXIgdmlkZW9cIi5zcGxpdCBcIiBcIlxuXG4gIEhUTUxbdGFnXSA9IGVsIHRhZyBmb3IgdGFnIGluIHRhZ3NcblxuSFRNTC5zdHlsZXNoZWV0ID0gKHVybCkgLT5cbiAgSFRNTC5saW5rIHJlbDogXCJzdHlsZXNoZWV0XCIsIGhyZWY6IHVybFxuXG5TVkcgPSB7fVxuXG5kbyAtPlxuICAjIHNvdXJjZTogaHR0cHM6Ly93d3cudzMub3JnL1RSL1NWRzIvZWx0aW5kZXguaHRtbFxuICB0YWdzID0gXCJhIGFsdEdseXBoIGFsdEdseXBoRGVmIGFsdEdseXBoSXRlbSBhbmltYXRlIGFuaW1hdGVDb2xvciBhbmltYXRlTW90aW9uXG4gIGFuaW1hdGVUcmFuc2Zvcm0gYW5pbWF0aW9uIGF1ZGlvIGNhbnZhcyBjaXJjbGUgY2xpcFBhdGggY29sb3ItcHJvZmlsZSBjdXJzb3JcbiAgZGVmcyBkZXNjIGRpc2NhcmQgZWxsaXBzZSBmZUJsZW5kIGZlQ29sb3JNYXRyaXggZmVDb21wb25lbnRUcmFuc2ZlclxuICBmZUNvbXBvc2l0ZSBmZUNvbnZvbHZlTWF0cml4IGZlRGlmZnVzZUxpZ2h0aW5nIGZlRGlzcGxhY2VtZW50TWFwXG4gIGZlRGlzdGFudExpZ2h0IGZlRHJvcFNoYWRvdyBmZUZsb29kIGZlRnVuY0EgZmVGdW5jQiBmZUZ1bmNHIGZlRnVuY1JcbiAgZmVHYXVzc2lhbkJsdXIgZmVJbWFnZSBmZU1lcmdlIGZlTWVyZ2VOb2RlIGZlTW9ycGhvbG9neSBmZU9mZnNldCBmZVBvaW50TGlnaHRcbiAgZmVTcGVjdWxhckxpZ2h0aW5nIGZlU3BvdExpZ2h0IGZlVGlsZSBmZVR1cmJ1bGVuY2UgZmlsdGVyIGZvbnQgZm9udC1mYWNlXG4gIGZvbnQtZmFjZS1mb3JtYXQgZm9udC1mYWNlLW5hbWUgZm9udC1mYWNlLXNyYyBmb250LWZhY2UtdXJpIGZvcmVpZ25PYmplY3QgZ1xuICBnbHlwaCBnbHlwaFJlZiBoYW5kbGVyIGhhdGNoIGhhdGNocGF0aCBoa2VybiBpZnJhbWUgaW1hZ2UgbGluZSBsaW5lYXJHcmFkaWVudFxuICBsaXN0ZW5lciBtYXJrZXIgbWFzayBtZXNoIG1lc2hncmFkaWVudCBtZXNocGF0Y2ggbWVzaHJvdyBtZXRhZGF0YVxuICBtaXNzaW5nLWdseXBoIG1wYXRoIHBhdGggcGF0dGVybiBwb2x5Z29uIHBvbHlsaW5lIHByZWZldGNoIHJhZGlhbEdyYWRpZW50IHJlY3RcbiAgc2NyaXB0IHNldCBzb2xpZENvbG9yIHNvbGlkY29sb3Igc3RvcCBzdHlsZSBzdmcgc3dpdGNoIHN5bWJvbCB0YnJlYWsgdGV4dFxuICB0ZXh0QXJlYSB0ZXh0UGF0aCB0aXRsZSB0cmVmIHRzcGFuIHVua25vd24gdXNlIHZpZGVvIHZpZXcgdmtlcm5cIi5zcGxpdCBcIiBcIlxuXG4gIFNWR1t0YWddID0gZWwgdGFnIGZvciB0YWcgaW4gdGFnc1xuXG5leHBvcnQge2VsLCBIVE1MLCBTVkd9XG4iXSwic291cmNlUm9vdCI6IiJ9
+//# sourceURL=/Users/dyoder/repos/panda-vdom/src/index.coffee

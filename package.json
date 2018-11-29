@@ -1,16 +1,20 @@
 {
   "name": "panda-vdom",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "VDOM helpers for writing direct VDOM-based templates",
-  "main": "build/npm/src/index.js",
+  "main": "build/web/src/index.js",
   "scripts": {
-    "test": "gulp npm:test"
+    "test": "p9k npm:test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/pandastrike/panda-vdom.git"
   },
-  "keywords": ["vdom", "html", "templates" ],
+  "keywords": [
+    "vdom",
+    "html",
+    "templates"
+  ],
   "author": "Dan Yoder",
   "license": "MIT",
   "bugs": {
@@ -18,12 +22,11 @@
   },
   "homepage": "https://github.com/pandastrike/panda-vdom#readme",
   "devDependencies": {
-    "gulp": "github:gulpjs/gulp#4.0",
-    "panda-builder": "^1.1.1",
-    "power-assert": "^1.4.4"
+    "panda-9000": "^4.4.0"
   },
   "dependencies": {
     "diffhtml": "^1.0.0-beta.9",
-    "diffhtml-render-to-string": "^1.0.0-beta.9"
+    "diffhtml-render-to-string": "^1.0.0-beta.9",
+    "panda-builder": "^3.2.1"
   }
 }

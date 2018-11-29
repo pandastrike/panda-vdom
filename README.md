@@ -14,8 +14,9 @@ assert.equal "<html><body><h1>Hello, World!</h1></body></html>",
       h1 "Hello, World!"
     ]
   ]
+
 ```
 
 ## Installation
 
-`npm i -s panda-vdom`
+`npm i panda-vdom`
