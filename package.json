@@ -1,6 +1,6 @@
 {
   "name": "panda-vdom",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "VDOM helpers for writing direct VDOM-based templates",
   "files": [
     "build/web/src"
